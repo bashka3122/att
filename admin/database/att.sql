@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2024 at 12:23 PM
+-- Generation Time: Oct 27, 2024 at 03:11 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `att`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `class`
+--
+
+CREATE TABLE `class` (
+  `id` int(11) NOT NULL,
+  `cname` varchar(20) NOT NULL,
+  `cId` varchar(10) NOT NULL,
+  `Faculty` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `class`
+--
+
+INSERT INTO `class` (`id`, `cname`, `cId`, `Faculty`) VALUES
+(5, 'BIT 7', 'BIT0007', 'Computer Science');
 
 -- --------------------------------------------------------
 
@@ -48,6 +68,13 @@ INSERT INTO `staff` (`id`, `name`, `email`, `password`, `role`, `status`) VALUES
 --
 
 --
+-- Indexes for table `class`
+--
+ALTER TABLE `class`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `cId` (`cId`);
+
+--
 -- Indexes for table `staff`
 --
 ALTER TABLE `staff`
@@ -56,6 +83,12 @@ ALTER TABLE `staff`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `class`
+--
+ALTER TABLE `class`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `staff`
