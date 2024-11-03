@@ -6,9 +6,9 @@ include 'includes/sidebar.php'; ?>
 
         <div class="col-md-12">
             <section class="box">
-                <h1>Welcome to Attendance Management System</h1>
-                <!-- <h1 id="ciwaan">Welcome To dashboard</h1>
-                <p id="waqti">
+                <!-- <h1>Welcome to Attendance Management System</h1> -->
+                <h1 id="ciwaan">Welcome To dashboard</h1>
+                <!-- <p id="waqti">
 
                 </p>
                 <button id="tuse" onclick="document.getElementById('ciwaan').style.display='block';  ">Show me text</button>
