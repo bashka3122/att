@@ -5,7 +5,10 @@ if (isset($_POST['btnSave'])) {
     $email = $_POST['email'];
     $role = $_POST['role'];
     $pass = $_POST['pass'];
-    $sql = "INSERT INTO staff(name, email, role,password) VALUES('$name','$email','$role','$pass')";
+
+
+
+    $sql = "INSERT INTO staff(name, email, role,password) VALUES('$name','$email','$role','$password')";
     $q = mysqli_query($conn, $sql);
     if ($q) {
         echo " <script>alert('Staff registered Successfully');location='../staffRegister.php'</script>";

@@ -32,11 +32,18 @@ if (isset($_POST['btnUpdate'])) {
 if (isset($_GET['cDel'])) {
 
     $cId = $_GET['cDel'];
-    $sql = "DELETE FROM class WHERE id='$cId'";
-    $q = mysqli_query($conn, $sql);
-    if ($q) {
-        echo " <script>alert('class Deleted Successfully');location='../viewClass.php'</script>";
+    $se = "SELECT std.id FROM students std JOIN class cl ON cl.cId=std.class WHERE cl.cId='$cId' ";
+    $q = mysqli_query($conn, $se);
+    $result = mysqli_fetch_assoc($q);
+    if ($result) {
+        echo " <script>alert('class-kaan ardey ayaa dhigata');location='../viewClass.php'</script>";
     } else {
-        echo "Sql Error" . mysqli_error($conn);
+        $sql = "DELETE FROM class WHERE cId='$cId'";
+        $d = mysqli_query($conn, $sql);
+        if ($d) {
+            echo " <script>alert('class Deleted Successfully');location='../viewClass.php'</script>";
+        } else {
+            echo "Sql Error" . mysqli_error($conn);
+        }
     }
 }

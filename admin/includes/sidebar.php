@@ -27,7 +27,7 @@ if (!$_SESSION['userName']) {
             <li><a href="classRegister.php"><span class="sidebar-icon"><i class="fa fa-bullseye"></i></span> <span class="menu-title">Class management</span></a></li>
             <li><a href="staffRegister.php"><span class="sidebar-icon"><i class="fa fa-users"></i></span> <span class="menu-title">Staff Management</span></a></li>
             <li><a href=""><span class="sidebar-icon"><i class="fa fa-calendar"></i></span> <span class="menu-title">Attendances</span></a></li>
-            <li><a href=""><span class="sidebar-icon"><i class="fa fa-suitcase"></i></span> <span class="menu-title">Students</span></a></li>
+            <li><a href="studentRegister.php"><span class="sidebar-icon"><i class="fa fa-suitcase"></i></span> <span class="menu-title">Students</span></a></li>
             <li><a href=""><span class="sidebar-icon"><i class="fa fa-lock"></i></span> <span class="menu-title">Sign Out</span></a></li>
         </ul>
     </div>
