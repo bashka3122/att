@@ -6,20 +6,20 @@ include 'includes/sidebar.php'; ?>
 
         <div class="col-md-12">
             <section class="box">
-                <h2> <a href="classRegister.php">Register Classes</a> </h2>
+                <h2> <a href="subjectRegister.php">Register Subject</a> </h2>
 
                 <div class="card">
                     <div class="card-header">
-                        <h1>List of Classes</h1>
+                        <h1>List of Subjects</h1>
                     </div>
                     <div class="card-body">
                         <table id="example" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>C name</th>
-                                    <th>Cid</th>
-                                    <th>Faculty</th>
+                                    <th>Subject name</th>
+                                    <th>Class</th>
+                                    <th>Teacher</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -28,19 +28,18 @@ include 'includes/sidebar.php'; ?>
 
                                 <?php
                                 include 'includes/connection.php';
-                                $view = "SELECT * FROM class";
+                                $view = "SELECT * FROM subjects";
                                 $q = mysqli_query($conn, $view);
                                 while ($r = mysqli_fetch_assoc($q)) {
                                 ?>
                                     <tr>
                                         <td><?php echo $r['id']; ?></td>
-                                        <td><?php echo $r['cname']; ?></td>
-                                        <td><?php echo $r['cId']; ?></td>
-                                        <td><?php echo $r['Faculty']; ?></td>
+                                        <td><?php echo $r['name']; ?></td>
+                                        <td><?php echo $r['class']; ?></td>
+                                        <td><?php echo $r['teacher']; ?></td>
                                         <td>
-                                            <a href=" editClass.php?cId=<?php echo $r['id']; ?>"><button class="btn btn-info">Edit</button></a>
-                                            <a href="backend/class.php?cDel=<?php echo $r['cId']; ?>"><button class="btn btn-danger" onclick=" return confirm('are you sure');">Delete</button></a>
-                                            <a href=" viewStudent.php?cid=<?php echo $r['id']; ?>"><button class="btn btn-success">View Students</button></a>
+                                            <a href=" editSubject.php?id=<?php echo $r['id']; ?>"><button class="btn btn-info">Edit</button></a>
+                                            <a href="backend/subject.php?id=<?php echo $r['id']; ?>"><button class="btn btn-danger" onclick=" return confirm('are you sure');">Delete</button></a>
                                         </td>
                                     <?php
                                 }

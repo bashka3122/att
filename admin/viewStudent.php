@@ -13,43 +13,90 @@ include 'includes/sidebar.php'; ?>
                         <h1>List of Students</h1>
                     </div>
                     <div class="card-body">
-                        <table id="example" class="table table-striped table-bordered" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Student name</th>
-                                    <th>Student iD</th>
-                                    <th>Faculty</th>
-                                    <th>Class</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
 
-                            <tbody>
-
-                                <?php
-                                include 'includes/connection.php';
-                                $view = "SELECT std.id,std.name, std.SID, cl.Faculty, cl.cname FROM students std JOIN class cl ON cl.cId=std.class;";
-                                $q = mysqli_query($conn, $view);
-                                while ($r = mysqli_fetch_assoc($q)) {
-                                ?>
+                        <?php
+                        if (isset($_GET['cid'])) {
+                            $id = $_GET['cid'];
+                        ?>
+                            <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                <thead>
                                     <tr>
-                                        <td><?php echo $r['id']; ?></td>
-                                        <td><?php echo $r['name']; ?></td>
-                                        <td><?php echo $r['SID']; ?></td>
-                                        <td><?php echo $r['Faculty']; ?></td>
-                                        <td><?php echo $r['cname']; ?></td>
-                                        <td>
-                                            <a href=" editStudent.php?sId=<?php echo $r['id']; ?>"><button class="btn btn-info">Edit</button></a>
-                                            <a href="backend/student.php?sDel=<?php echo $r['id']; ?>"><button class="btn btn-danger" onclick=" return confirm('are you sure');">Delete</button></a>
-                                        </td>
-                                    <?php
-                                }
-                                    ?>
+                                        <th>#</th>
+                                        <th>Student name</th>
+                                        <th>Student iD</th>
+                                        <th>Faculty</th>
+                                        <th>Class</th>
+                                        <th>Actions</th>
                                     </tr>
-                            </tbody>
+                                </thead>
 
-                        </table>
+                                <tbody>
+
+                                    <?php
+                                    include 'includes/connection.php';
+                                    $view = "SELECT std.id,std.name, std.SID, cl.Faculty, cl.cname FROM students std JOIN class cl ON cl.cId=std.class WHERE cl.id='$id';";
+                                    $q = mysqli_query($conn, $view);
+                                    while ($r = mysqli_fetch_assoc($q)) {
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $r['id']; ?></td>
+                                            <td><?php echo $r['name']; ?></td>
+                                            <td><?php echo $r['SID']; ?></td>
+                                            <td><?php echo $r['Faculty']; ?></td>
+                                            <td><?php echo $r['cname']; ?></td>
+                                            <td>
+                                                <a href=" editStudent.php?sId=<?php echo $r['id']; ?>"><button class="btn btn-info">Edit</button></a>
+                                                <a href="backend/student.php?sDel=<?php echo $r['id']; ?>"><button class="btn btn-danger" onclick=" return confirm('are you sure');">Delete</button></a>
+                                            </td>
+                                        <?php
+                                    }
+                                        ?>
+                                        </tr>
+                                </tbody>
+
+                            </table>
+                        <?php  } else {
+
+
+                        ?>
+                            <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Student name</th>
+                                        <th>Student iD</th>
+                                        <th>Faculty</th>
+                                        <th>Class</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    <?php
+                                    include 'includes/connection.php';
+                                    $view = "SELECT std.id,std.name, std.SID, cl.Faculty, cl.cname FROM students std JOIN class cl ON cl.cId=std.class;";
+                                    $q = mysqli_query($conn, $view);
+                                    while ($r = mysqli_fetch_assoc($q)) {
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $r['id']; ?></td>
+                                            <td><?php echo $r['name']; ?></td>
+                                            <td><?php echo $r['SID']; ?></td>
+                                            <td><?php echo $r['Faculty']; ?></td>
+                                            <td><?php echo $r['cname']; ?></td>
+                                            <td>
+                                                <a href=" editStudent.php?sId=<?php echo $r['id']; ?>"><button class="btn btn-info">Edit</button></a>
+                                                <a href="backend/student.php?sDel=<?php echo $r['id']; ?>"><button class="btn btn-danger" onclick=" return confirm('are you sure');">Delete</button></a>
+                                            </td>
+                                        <?php
+                                    }
+                                        ?>
+                                        </tr>
+                                </tbody>
+
+                            </table>
+                        <?php } ?>
                     </div>
                 </div>
 
