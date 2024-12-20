@@ -1,25 +1,22 @@
 <?php
 include '../includes/connection.php';
+//Attendance Table Save
 if (isset($_POST['btnSave'])) {
-    // $Aid = $_POST['Aid'];
-    // $Sid[] = $_POST['Sid'];
-    // $status[] = $_POST['status'];
-    // $Sname[] = $_POST['Sname'];
-    extract($_POST);
-    $id = count($_POST['sid']);
-    for ($i = 0; $i < $id; $i++) {
+    $class = $_POST['class'];
+    $subject = $_POST['subject'];
 
-        $sql = "INSERT INTO att_records(a_id,sid,sname,status) 
-    VALUES('$a_id[$i]','$sid[$i]','$sname[$i]','$status[$i]')";
-        $q = mysqli_query($conn, $sql);
-    }
+    $ac_year = $_POST['ac_year'];
+
+    $sql = "INSERT INTO att_table(class,subject,ac_year) 
+    VALUES('$class','$subject','$ac_year')";
+    $q = mysqli_query($conn, $sql);
     if ($q) {
         echo " <script>alert('Attendance registered Successfully');location='../attendanceRegister.php'</script>";
     } else {
         echo "Sql Error" . mysqli_error($conn);
     }
 }
-//btnUpdate
+//btnUpdate Attendance Table
 if (isset($_POST['btnUpdate'])) {
     $acyear = $_POST['acyear'];
 
@@ -31,6 +28,43 @@ if (isset($_POST['btnUpdate'])) {
         echo "Sql Error" . mysqli_error($conn);
     }
 }
+
+//Attendance Records Save and Update
+if (isset($_POST['btnAtt'])) {
+
+    extract($_POST);
+    $aid = $_POST['a_id'][0];
+    $sqlcheck = "SELECT a_id FROM att_records WHERE a_id='$aid' ";
+    $qcheck = mysqli_query($conn, $sqlcheck);
+    $r = mysqli_fetch_assoc($qcheck);
+    if ($r) {
+        $id = count($_POST['sid']);
+        for ($i = 0; $i < $id; $i++) {
+            $sqlUp = "UPDATE att_records SET status='$status[$i]',sid='$sid[$i]'  WHERE a_id='$aid'";
+            $qup = mysqli_query($conn, $sqlUp);
+        }
+        if ($qup) {
+            echo " <script>alert('Attendance Updated Successfully');location='../attendanceRegister.php'</script>";
+        } else {
+            echo "Sql Error" . mysqli_error($conn);
+        }
+    } else {
+
+        $id = count($_POST['sid']);
+        for ($i = 0; $i < $id; $i++) {
+
+            $sql = "INSERT INTO att_records(a_id,sid,sname,status) 
+    VALUES('$a_id[$i]','$sid[$i]','$sname[$i]','$status[$i]')";
+            $q = mysqli_query($conn, $sql);
+        }
+        if ($q) {
+            echo " <script>alert('Attendance registered Successfully');location='../attendanceRegister.php'</script>";
+        } else {
+            echo "Sql Error" . mysqli_error($conn);
+        }
+    }
+}
+
 
 //delete
 if (isset($_GET['sDel'])) {

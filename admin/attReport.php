@@ -1,5 +1,6 @@
 <?php include 'includes/top.php';
-include 'includes/sidebar.php'; ?>
+// include 'includes/sidebar.php'; 
+?>
 
 <section id="main-content">
     <section class="wrapper main-wrapper row">
@@ -11,7 +12,7 @@ include 'includes/sidebar.php'; ?>
                 <div class="card">
                     <div class="card-header">
 
-                        <img src="images/lplasma.png" style="margin-left:350px" />
+                        <img src="images/lplasma.png" style="margin-left:0px" />
                         <img src="images/xariijin.PNG" width="100%" />
 
                     </div>
@@ -53,7 +54,7 @@ include 'includes/sidebar.php'; ?>
 
                                         <?php
 
-                                        $view = "SELECT * from students WHERE class='$class'";
+                                        $view = "SELECT * from att_records WHERE a_id='$id'";
                                         $q = mysqli_query($conn, $view);
                                         $sno = 1;
                                         while ($r = mysqli_fetch_assoc($q)) {
@@ -62,17 +63,25 @@ include 'includes/sidebar.php'; ?>
                                             <tr>
                                                 <td><?php echo $sno; ?></td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="sname[]" value=" <?php echo $r['name']; ?>" readonly>
+                                                    <?php echo $r['sname']; ?>
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="form-control" name="sid[]" value=" <?php echo $r['SID']; ?>" readonly>
+                                                    <?php echo $r['sid']; ?>
 
                                                 </td>
 
-                                                <td><select name="status[]" class="form-control">
-                                                        <option value='1'>Present</option>
-                                                        <option value='0'>Absent</option>
-                                                    </select></td>
+                                                <td>
+
+                                                    <?php
+                                                    $st = $r['status'];
+                                                    if ($st == 1) {
+
+                                                        echo "<p style='color:green;'>Present </p>";
+                                                    } else {
+                                                        echo "<strong style='color:red; font-size:21px;'>Absent </strong>";
+                                                    }
+                                                    ?>
+                                                </td>
 
                                             <?php
                                             $sno++;
@@ -83,7 +92,7 @@ include 'includes/sidebar.php'; ?>
 
                                 </table>
                             <?php } ?>
-                            <button class="btn btn-primary" name="btnAtt">Save </button>
+
                             </form>
                     </div>
                 </div>
@@ -94,13 +103,3 @@ include 'includes/sidebar.php'; ?>
 
     </section>
 </section>
-<script>
-    new DataTable('#example', {
-        lengthMenu: [
-            [-1, 5, 10, 50, 100, ],
-            [" dhamaan", "five", "ten", 50, 100],
-        ]
-    });
-</script>
-
-<script src="js/practice.js"></script>
