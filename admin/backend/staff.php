@@ -6,8 +6,6 @@ if (isset($_POST['btnSave'])) {
     $role = $_POST['role'];
     $pass = $_POST['pass'];
 
-
-
     $sql = "INSERT INTO staff(name, email, role,password) VALUES('$name','$email','$role','$password')";
     $q = mysqli_query($conn, $sql);
     if ($q) {

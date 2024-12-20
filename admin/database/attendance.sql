@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2024 at 05:45 PM
+-- Generation Time: Dec 20, 2024 at 11:56 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -20,6 +20,69 @@ SET time_zone = "+00:00";
 --
 -- Database: `att`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ac_year`
+--
+
+CREATE TABLE `ac_year` (
+  `id` int(11) NOT NULL,
+  `ac_year` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `ac_year`
+--
+
+INSERT INTO `ac_year` (`id`, `ac_year`) VALUES
+(2, '2024-2025');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `att_records`
+--
+
+CREATE TABLE `att_records` (
+  `id` int(11) NOT NULL,
+  `a_id` int(11) NOT NULL,
+  `sid` varchar(30) NOT NULL,
+  `sname` varchar(30) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `att_records`
+--
+
+INSERT INTO `att_records` (`id`, `a_id`, `sid`, `sname`, `status`) VALUES
+(33, 4, ' ggu001', ' ALi Warsame', 1),
+(34, 4, ' ggu002', ' Ahmed', 1),
+(35, 4, ' ggu004', ' Maxamed', 1),
+(36, 4, ' ggu005', ' ALi', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `att_table`
+--
+
+CREATE TABLE `att_table` (
+  `id` int(11) NOT NULL,
+  `class` varchar(20) NOT NULL,
+  `subject` varchar(30) NOT NULL,
+  `date` date NOT NULL DEFAULT current_timestamp(),
+  `ac_year` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `att_table`
+--
+
+INSERT INTO `att_table` (`id`, `class`, `subject`, `date`, `ac_year`) VALUES
+(4, 'BIT0007', 'PHP', '2024-12-17', '2024-2025');
 
 -- --------------------------------------------------------
 
@@ -75,7 +138,7 @@ INSERT INTO `staff` (`id`, `name`, `email`, `password`, `role`, `status`) VALUES
 
 CREATE TABLE `students` (
   `id` int(11) NOT NULL,
-  `SID` varchar(20) NOT NULL,
+  `SID` varchar(11) NOT NULL,
   `name` varchar(30) NOT NULL,
   `class` varchar(10) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 0
@@ -86,13 +149,11 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `SID`, `name`, `class`, `status`) VALUES
-(2, 'gg00231', 'ALi Warsame', 'BIT04', 0),
-(4, 'GG201', 'Maxamed', 'BIT0007', 0),
-(5, 'gg21', 'Ahmed', 'BIT0007', 0),
-(6, 'gg22', 'Caasho', 'BIT0007', 0),
-(7, 's001', 'Ahmed', 'BIT0008', 0),
-(8, 's002', 'Caasho', 'HH0004', 0),
-(9, 's003', 'ALi Warsane', 'BIT0008', 0);
+(10, 'ggu001', 'ALi Warsame', 'BIT0007', 0),
+(11, 'ggu002', 'Ahmed', 'BIT0007', 0),
+(12, 'ggu003', 'Caasho', 'HH0004', 0),
+(13, 'ggu004', 'Maxamed', 'BIT0007', 0),
+(14, 'ggu005', 'ALi', 'BIT0007', 0);
 
 -- --------------------------------------------------------
 
@@ -113,11 +174,31 @@ CREATE TABLE `subjects` (
 
 INSERT INTO `subjects` (`id`, `name`, `class`, `teacher`) VALUES
 (2, 'C#', 'BIT0007', 'Admin'),
-(3, 'PHP', 'BIT0007', 'Fadumo Abdisalam');
+(3, 'PHP', 'BIT0007', 'Fadumo Abdisalam'),
+(4, 'nursing', 'HH0004', 'Fadumo Abdisalam'),
+(5, '', 'BIT0007', '');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `ac_year`
+--
+ALTER TABLE `ac_year`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `att_records`
+--
+ALTER TABLE `att_records`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `att_table`
+--
+ALTER TABLE `att_table`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `class`
@@ -150,6 +231,24 @@ ALTER TABLE `subjects`
 --
 
 --
+-- AUTO_INCREMENT for table `ac_year`
+--
+ALTER TABLE `ac_year`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `att_records`
+--
+ALTER TABLE `att_records`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
+--
+-- AUTO_INCREMENT for table `att_table`
+--
+ALTER TABLE `att_table`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
@@ -165,13 +264,13 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
