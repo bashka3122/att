@@ -38,12 +38,17 @@ if (isset($_POST['btnAtt'])) {
     $qcheck = mysqli_query($conn, $sqlcheck);
     $r = mysqli_fetch_assoc($qcheck);
     if ($r) {
+        $del = "DELETE FROM att_records WHERE a_id='$aid'";
+        $qdel = mysqli_query($conn, $del);
+
         $id = count($_POST['sid']);
         for ($i = 0; $i < $id; $i++) {
-            $sqlUp = "UPDATE att_records SET status='$status[$i]',sid='$sid[$i]'  WHERE a_id='$aid'";
-            $qup = mysqli_query($conn, $sqlUp);
+
+            $sql = "INSERT INTO att_records(a_id,sid,sname,status) 
+    VALUES('$a_id[$i]','$sid[$i]','$sname[$i]','$status[$i]')";
+            $q = mysqli_query($conn, $sql);
         }
-        if ($qup) {
+        if ($q) {
             echo " <script>alert('Attendance Updated Successfully');location='../attendanceRegister.php'</script>";
         } else {
             echo "Sql Error" . mysqli_error($conn);
